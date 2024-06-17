@@ -5,9 +5,12 @@ import os
 import threading
 import ctypes
 
+stop_force_exit = False
+
 def force_exit():
-    ctypes.windll.user32.MessageBoxW(0, "FATAL ERROR: ESCAPED ESCAPED ESCAPED", "Error", 1)
-    os._exit(1)
+    global stop_force_exit
+    if not stop_force_exit:
+        os._exit(1)
 
 
 
@@ -32,7 +35,8 @@ def selfaware():
     new_photo = ImageTk.PhotoImage(new_image)
     label.config(image=new_photo)
     label.image = new_photo
-def ending():
+def badending():
+    global stop_force_exit
     # Change the music
     pygame.mixer.music.load(os.path.join(current_directory, "Hi-Im-SpongeBob-main/HI.mp3"))
     pygame.mixer.music.play(-1)
@@ -50,6 +54,19 @@ def ending():
     
     # Call the force_exit function after 10 seconds
     threading.Timer(10, lambda: force_exit() if root.winfo_exists() else None).start()
+def goodending():
+    global stop_force_exit
+    stop_force_exit = True
+    # Stop all music
+    pygame.mixer_music.stop
+    
+    # Change the Image
+    new_image = Image.open(os.path.join(current_directory, "Hi-Im-SpongeBob-main/goodending.png"))
+    new_photo = ImageTk.PhotoImage(new_image)
+    label.config(image=new_photo)
+    label.image = new_photo
+    
+
 
 
 
@@ -72,8 +89,8 @@ label.image = photo  # Keep a reference!
 label.pack()
 
 root.after(60000, selfaware)
-
-root.after(120000, ending)
+root.after(120000, badending)
+root.after(150000, goodending)
 
 def close(event):
     root.destroy()
