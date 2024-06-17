@@ -1,6 +1,7 @@
 # Hi, I'm SpongeBob
 "Hi, I'm SpongeBob" is a "creepypasta" application, meant for entertainment purposes.
 Events happen at the timestamps 1:00, 2:00, and 2:10 after the application is started.
+Press `Esc` to exit the application at the final event.
 # Installation
 You can find the EXE files and related required files at the releases page.
 # Building from Source
