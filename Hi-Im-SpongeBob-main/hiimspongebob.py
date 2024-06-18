@@ -5,10 +5,6 @@ import os
 import threading
 import ctypes
 
-stop_force_exit = False
-
-
-
 
 
 current_directory = os.getcwd()
@@ -45,16 +41,10 @@ def badending():
     label.image = new_photo
     label.configure(bg='#0078D7')
 
-    # Make the window go into full screen mode
-    root.attributes('-fullscreen', True)
-    root.overrideredirect(True)
+    
     
 
 def goodending():
-    global stop_force_exit
-    stop_force_exit = True
-    # Stop all music
-    pygame.mixer_music.stop
     
     # Change the Image
     new_image = Image.open(os.path.join(current_directory, "Hi-Im-SpongeBob-main/goodending.png"))
@@ -62,13 +52,17 @@ def goodending():
     label.config(image=new_photo)
     label.image = new_photo
     
+    # Make the window go into full screen mode
+    root.attributes('-fullscreen', True)
+    root.overrideredirect(True)
+    
 
 
 
 
 # Create the main window
 root = tk.Tk()
-root.title("spunchbop")
+root.title("imspongebob v2")
 
 root.configure(bg='#0078D7')
 
