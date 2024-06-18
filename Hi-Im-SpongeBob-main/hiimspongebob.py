@@ -7,10 +7,7 @@ import ctypes
 
 stop_force_exit = False
 
-def force_exit():
-    global stop_force_exit
-    if not stop_force_exit:
-        os._exit(1)
+
 
 
 
@@ -52,8 +49,7 @@ def badending():
     root.attributes('-fullscreen', True)
     root.overrideredirect(True)
     
-    # Call the force_exit function after 10 seconds
-    threading.Timer(10, lambda: force_exit() if root.winfo_exists() else None).start()
+
 def goodending():
     global stop_force_exit
     stop_force_exit = True
